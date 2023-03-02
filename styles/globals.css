@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply p-0 m-0;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+}
+
+body {
+  caret-color: transparent;
+  @apply leading-normal tracking-normal text-emerald-900 custom-scroll;
+}
+
+/* width */
+.custom-scroll::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+/* Track */
+.custom-scroll::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+/* Handle */
+.custom-scroll::-webkit-scrollbar-thumb {
+  @apply bg-teal-900 hover:bg-teal-700 rounded-full 
+  bg-opacity-70 transition-colors duration-500;
+}
+
+.abs-center {
+  @apply absolute top-1/2 left-1/2 
+  transform -translate-x-1/2 -translate-y-1/2;
+}
