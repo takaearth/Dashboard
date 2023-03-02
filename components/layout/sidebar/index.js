@@ -39,7 +39,6 @@ export default function Sidebar() {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    console.log("run");
     if (open) {
       controls.start("rest");
     } else {
@@ -65,7 +64,11 @@ export default function Sidebar() {
             onClick={toggleAnimation}
             className="btn btn-sm btn-circle btn-ghost"
           >
-            {open ? <BiLeftArrow size="1.5em" /> : <BiRightArrow size="1.5em" />}
+            {open ? (
+              <BiLeftArrow size="1.5em" />
+            ) : (
+              <BiRightArrow size="1.5em" />
+            )}
           </button>
         </div>
         <div className="relative h-[5vh] w-full">
@@ -83,6 +86,7 @@ export default function Sidebar() {
           index={1}
           open={open}
           title="Home"
+          selected={router.pathname === "/"}
           icon={<RiHomeFill size="1.5em" />}
         />
         <SideBarItem
@@ -90,6 +94,7 @@ export default function Sidebar() {
           open={open}
           title="Users"
           link="/users"
+          selected={router.pathname.indexOf("/users") === 0}
           icon={<HiUsers size="1.5em" />}
         />
         <SideBarItem
@@ -97,6 +102,7 @@ export default function Sidebar() {
           open={open}
           link="/drops"
           title="Drop Offs"
+          selected={router.pathname.indexOf("/drops") === 0}
           icon={<FiPackage size="1.5em" />}
         />
         <SideBarItem
@@ -104,6 +110,7 @@ export default function Sidebar() {
           open={open}
           title="Transactions"
           link="/transactions"
+          selected={router.pathname.indexOf("/transactions") === 0}
           icon={<MdAttachMoney size="1.5em" />}
         />
         <SideBarItem
@@ -111,6 +118,7 @@ export default function Sidebar() {
           open={open}
           link="/pickups"
           title="Pick Ups"
+          selected={router.pathname.indexOf("/pickups") === 0}
           icon={<FaTruckPickup size="1.5em" />}
         />
         <SideBarItem
@@ -118,6 +126,7 @@ export default function Sidebar() {
           open={open}
           title="Feedback"
           link="/feedback"
+          selected={router.pathname.indexOf("/feedback") === 0}
           icon={<MdFeedback size="1.5em" />}
         />
         <div className="flex-1"></div>

@@ -56,7 +56,7 @@ export default function SignInPage() {
                     className="space-y-4 md:space-y-6 caret-emerald-600"
                     onSubmit={handleSubmit}
                   >
-                    <div className="relative form-control w-full">
+                    <div className="relative w-full">
                       <input
                         type="text"
                         name="email"
@@ -92,7 +92,7 @@ export default function SignInPage() {
                       )}
                     </div>
                     <div className="flex gap-2 items-center">
-                      <div className="relative form-control w-full">
+                      <div className="relative w-full">
                         <input
                           placeholder=" "
                           name="password"

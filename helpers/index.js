@@ -72,3 +72,23 @@ export function censorName(name) {
   // Return the censored name
   return censoredName;
 }
+
+
+export function censorPhoneNumber(phoneNumber) {
+  // Check that the phoneNumber is a string and matches the format +254XXXXXXXXX
+  const phoneNumberRegex = /^\+254\d{9}$/;
+  if (typeof phoneNumber !== 'string' || !phoneNumber.match(phoneNumberRegex)) {
+    return phoneNumber;
+  }
+
+  const countryCode = phoneNumber.substring(0, 4); // Extract the country code (+254)
+  const firstPart = phoneNumber.substring(4, 7); // Extract the first 3 digits of the phone number
+  const censoredPart = phoneNumber.substring(7, 10).replace(/\d/g, '*'); // Censor the middle 3 digits
+  const lastPart = phoneNumber.substring(10); // Extract the last 3 digits of the phone number
+
+  // Combine the parts back into a censored phone number string
+  const censoredPhoneNumber = `${countryCode}${firstPart}${censoredPart}${lastPart}`;
+
+  // Return the censored phone number
+  return censoredPhoneNumber;
+}

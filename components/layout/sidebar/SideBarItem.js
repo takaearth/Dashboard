@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { classNames } from "@/helpers";
 
 export default function SideBarItem({
-  icon,
-  title,
-  link,
-  index,
   open,
+  icon,
+  link,
+  title,
+  index,
+  selected,
 }) {
   return (
     <Link href={link}>
@@ -19,7 +20,8 @@ export default function SideBarItem({
         variants={buttonAnim}
         className={classNames(
           "relative w-full flex gap-2 items-center p-4 rounded-lg hover:bg-emerald-700 hover:shadow-sm",
-          open ? "justify-start" : "justify-center"
+          open ? "justify-start" : "justify-center",
+          selected && "bg-emerald-700"
         )}
       >
         {icon}{" "}

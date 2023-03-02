@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 //hooks
 import useUsersFetch from "@/hooks/users";
 //custom
-import { censorName } from "@/helpers";
+import { censorPhoneNumber } from "@/helpers";
 
 //dynamic imports
 const BiUserCircle = dynamic(
@@ -16,9 +16,10 @@ const RiArrowRightCircleLine = dynamic(
   async () => (await import("react-icons/ri")).RiArrowRightCircleLine
 );
 
-export default function UsersList() {
+export default function UsersList({ search }) {
   const { users } = useUsersFetch();
   let limit = 10;
+  const [filtered, setFiltered] = useState(users);
   const [page, setPage] = useState([]);
   const [pin, setPin] = useState({
     start: 0,
@@ -26,16 +27,36 @@ export default function UsersList() {
   });
 
   useEffect(() => {
-    if (users?.length > limit) {
-      setPin({ start: 0, end: limit });
+    if (search.length > 0) {
+      let tmp = users.filter((user) => {
+        let phone = user.id;
+        let names = user.name.toLowerCase().split(" ");
+        let matched = names.some((name) =>
+          name
+            .toLowerCase()
+            .startsWith(search.slice(0, Math.max(name.length - 1, 1)))
+        );
+        return phone.includes(search.toLowerCase()) || matched;
+      });
+      setFiltered(tmp);
+    } else {
+      setFiltered(users);
     }
-  }, [users]);
+  }, [search, users]);
+
+  useEffect(() => {
+    if (filtered?.length > limit) {
+      setPin({ start: 0, end: limit });
+    }else{
+      setPin({ start: 0, end: filtered.length })
+    }
+  }, [filtered]);
 
   useEffect(() => {
     if (pin) {
-      setPage(users.slice(pin.start, pin.end));
+      setPage(filtered.slice(pin.start, pin.end));
     }
-  }, [pin]);
+  }, [pin, filtered]);
 
   return (
     <section>
@@ -71,7 +92,9 @@ export default function UsersList() {
                 </span>
                 <div className="pl-3">
                   <div className="text-base font-medium">{user.name}</div>
-                  <div className="font-normal text-gray-500">{user.id}</div>
+                  <div className="font-normal text-gray-500">
+                    {censorPhoneNumber(user.id)}
+                  </div>
                 </div>
               </th>
               <td className="px-6 py-4 ">{user.points}</td>
@@ -101,7 +124,7 @@ export default function UsersList() {
           </button>
         )}
 
-        {pin.end <= users.length && (
+        {pin.end <= users.length  && page?.length == limit && (
           <button onClick={loadNext} className="gap-1 btn btn-sm btn-primary">
             <p>Next</p>
             <RiArrowRightCircleLine size="1.25em" />
