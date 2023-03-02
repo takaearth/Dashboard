@@ -29,8 +29,9 @@ export default function DropsList({ search }) {
   useEffect(() => {
     if (search.length > 0) {
       let tmp = drops.filter((drop) => {
-        let phone = drop.id;
-        let names = drop.name.toLowerCase().split(" ");
+        let user = drop.user;
+        let phone = user.id;
+        let names = user.name.toLowerCase().split(" ");
         let matched = names.some((name) =>
           name
             .toLowerCase()
