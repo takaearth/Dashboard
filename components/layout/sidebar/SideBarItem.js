@@ -19,9 +19,10 @@ export default function SideBarItem({
         custom={index}
         variants={buttonAnim}
         className={classNames(
-          "relative w-full flex gap-2 items-center p-4 rounded-lg hover:bg-emerald-700 hover:shadow-sm",
+          "relative w-full flex gap-2 items-center p-4 rounded-lg hover:shadow-sm transition-colors duration-75 ease-linear",
           open ? "justify-start" : "justify-center",
-          selected && "bg-emerald-700"
+          selected && "bg-emerald-800",
+          !selected && "hover:bg-emerald-700"
         )}
       >
         {icon}{" "}
@@ -54,7 +55,7 @@ const buttonAnim = {
     },
   }),
   tap: {
-    scale: 1.1,
+    scale: 1.05,
     transition: spring,
   },
 };

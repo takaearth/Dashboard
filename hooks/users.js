@@ -1,29 +1,17 @@
 import { useEffect, useState } from "react";
 import {
-  doc,
   query,
-  where,
-  limit,
-  addDoc,
-  setDoc,
-  orderBy,
-  endAt,
-  startAt,
   collection,
   onSnapshot,
 } from "@firebase/firestore";
-import { db } from "../firebase";
 import localforage from "localforage";
-//import { useAuth } from "../context/authContext";
 //custom
+import { db } from "@/firebase";
 
 const useUsersFetch = () => {
-  //const { user: session } = useAuth();
   const [users, setUsers] = useState([]);
   const [usersError, setUsersError] = useState(null);
   const [usersPending, setUsersPending] = useState(false);
-  const [page, setPage] = useState(null);
-
 
   useEffect(() => {
     try {

@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+//context
+import { useData } from "@/context/dataContext";
 //hooks
 import useDropsFetch from "@/hooks/drops";
 //custom
@@ -18,6 +20,7 @@ const RiArrowRightCircleLine = dynamic(
 
 export default function DropsList({ search }) {
   const { drops } = useDropsFetch();
+  const { setSelDrop } = useData();
   let limit = 10;
   const [filtered, setFiltered] = useState(drops);
   const [page, setPage] = useState([]);
@@ -108,6 +111,7 @@ export default function DropsList({ search }) {
               <td className="px-6 py-4">
                 <label
                   htmlFor="my-modal-4"
+                  onMouseDown={(e) => handleClick(e, drop)}
                   className="font-medium  text-emerald-600 dark:text-emerald-500 hover:underline"
                 >
                   View Drop
@@ -134,6 +138,11 @@ export default function DropsList({ search }) {
       </div>
     </section>
   );
+
+  function handleClick(e, drop) {
+    e.preventDefault();
+    setSelDrop(drop);
+  }
 
   function loadPrev() {
     setPin({

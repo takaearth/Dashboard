@@ -34,11 +34,23 @@ export default function SignInPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen w-full bg-emerald-50">
-        <section className="grid grid-cols-2">
-          <div className="bg-emerald-600 h-screen w-full"></div>
+        <section className="grid lg:grid-cols-2">
+          <div className="relative bg-gradient-to-t from-emerald-600 to-emerald-700 h-screen w-full overflow-hidden hidden lg:block">
+            <div className="absolute left-[-40vw] top-[20vh]">
+              <div className="relative h-[80vw] w-[80vw] mb-5">
+              <Image
+                src="/images/taka-bin.svg"
+                sizes="(max-width: 150px) 100vw"
+                alt="Taka Earth"
+                priority
+                fill
+              />
+              </div>
+            </div>
+          </div>
           <section className="bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-              <div className="relative h-[5vh] w-[11vh] mb-5">
+              <div className="relative h-[9vh] w-[18vh] mb-5">
                 <Image
                   src="/images/logo-color.png"
                   sizes="(max-width: 150px) 100vw"
@@ -47,7 +59,7 @@ export default function SignInPage() {
                   fill
                 />
               </div>
-              <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+              <div className="w-full bg-white rounded-lg drop-shadow-xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Sign in to your account
@@ -150,7 +162,7 @@ export default function SignInPage() {
                       <button
                         type="submit"
                         className={classNames(
-                          "btn btn-wide btn-primary",
+                          "btn btn-lg btn-wide btn-primary rounded-xl",
                           loading && "loading"
                         )}
                       >

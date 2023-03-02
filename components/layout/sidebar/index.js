@@ -57,7 +57,7 @@ export default function Sidebar() {
         variants={contAnim}
         initial="hide"
         animate={controls}
-        className="relative h-screen bg-emerald-600 text-white drop-shadow-2xl flex flex-col gap-2 pt-5 px-4"
+        className="relative h-screen bg-gradient-to-b from-emerald-600 to-emerald-800 text-white drop-shadow-2xl flex flex-col gap-2 pt-5 px-4"
       >
         <div className="flex justify-end w-full">
           <button
@@ -73,7 +73,7 @@ export default function Sidebar() {
         </div>
         <div className="relative h-[5vh] w-full">
           <Image
-            src={open ? "/images/logo-white-color.png" : "/images/bin.png"}
+            src={open ? "/images/logo-white-color.png" : "/images/taka-bin.svg"}
             sizes="(max-width: 150px) 100vw"
             className="object-contain"
             alt="Taka Earth"

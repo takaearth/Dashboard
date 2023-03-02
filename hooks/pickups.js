@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import {
-  doc,
   query,
-  where,
-  limit,
-  addDoc,
-  setDoc,
-  orderBy,
   collection,
   onSnapshot,
 } from "@firebase/firestore";
-import { db } from "../firebase";
 import localforage from "localforage";
-import { useAuth } from "../context/authContext";
-import { isEmpty } from "@/helpers";
 //custom
+import { db } from "@/firebase";
+import { isEmpty } from "@/helpers";
+import { useAuth } from "@/context/authContext";
 
 const usePickupsFetch = () => {
   const { user: session } = useAuth();

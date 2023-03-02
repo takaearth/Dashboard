@@ -22,8 +22,8 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#10b981",
-          "primary-focus": "#059669",
+          primary: "#059669",
+          "primary-focus": "#047857",
           "primary-content": "#fff",
         },
       },

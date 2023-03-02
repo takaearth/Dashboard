@@ -10,11 +10,11 @@ import {
   collection,
   onSnapshot,
 } from "@firebase/firestore";
-import { db } from "../firebase";
 import localforage from "localforage";
-import { useAuth } from "../context/authContext";
-import { isEmpty } from "@/helpers";
 //custom
+import { db } from "@/firebase";
+import { isEmpty } from "@/helpers";
+import { useAuth } from "@/context/authContext";
 
 const useFeedbackFetch = () => {
   const { user: session } = useAuth();
