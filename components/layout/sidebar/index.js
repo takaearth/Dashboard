@@ -7,6 +7,8 @@ import { motion, useAnimationControls } from "framer-motion";
 import SideBarItem from "./SideBarItem";
 import { useAuth } from "@/context/authContext";
 import { classNames } from "@/helpers";
+import SideBarDrop from "./SideBarDrop";
+import Link from "next/link";
 //dynamic imports
 const RiHomeFill = dynamic(
   async () => (await import("react-icons/ri")).RiHomeFill
@@ -72,14 +74,18 @@ export default function Sidebar() {
           </button>
         </div>
         <div className="relative h-[5vh] w-full">
-          <Image
-            src={open ? "/images/logo-white-color.png" : "/images/taka-bin.svg"}
-            sizes="(max-width: 150px) 100vw"
-            className="object-contain"
-            alt="Taka Earth"
-            priority
-            fill
-          />
+          <Link href="/">
+            <Image
+              src={
+                open ? "/images/logo-white-color.png" : "/images/taka-bin.svg"
+              }
+              sizes="(max-width: 150px) 100vw"
+              className="object-contain"
+              alt="Taka Earth"
+              priority
+              fill
+            />
+          </Link>
         </div>
         <SideBarItem
           link="/"
@@ -89,19 +95,27 @@ export default function Sidebar() {
           selected={router.pathname === "/"}
           icon={<RiHomeFill size="1.5em" />}
         />
-        <SideBarItem
+        <SideBarDrop
           index={2}
           open={open}
           title="Users"
           link="/users"
+          sublinks={[
+            { title: "Analytics", link: "/users" },
+            { title: "Users List", link: "/users/list" },
+          ]}
           selected={router.pathname.indexOf("/users") === 0}
           icon={<HiUsers size="1.5em" />}
         />
-        <SideBarItem
-          index={3}
+        <SideBarDrop
+          index={2}
           open={open}
           link="/drops"
           title="Drop Offs"
+          sublinks={[
+            { title: "Analytics", link: "/drops" },
+            { title: "Drops List", link: "/drops/list" },
+          ]}
           selected={router.pathname.indexOf("/drops") === 0}
           icon={<FiPackage size="1.5em" />}
         />

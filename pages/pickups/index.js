@@ -6,7 +6,7 @@ import { AuthGuard } from "@/components/elements/AuthGuard";
 export default function PickupsPage() {
   return (
     <AuthGuard>
-      <main className="bg-gray-100 w-full h-screen pt-20 px-6">
+      <main className="bg-gray-100 w-full min-h-screen max-h-screen overflow-y-scroll custom-scroll pt-20 px-6">
         <Breadcrumb routes={["Pickups"]} />
         <PickupsList />
       </main>

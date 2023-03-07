@@ -1,36 +1,27 @@
-import { useState } from "react";
+//hooks
+import useDropsFetch from "@/hooks/drops";
 //custom components
-import DropsList from "./DropsList";
 import Breadcrumb from "@/components/elements/Breadcrumb";
 import { AuthGuard } from "@/components/elements/AuthGuard";
+import SectionDropsStats from "@/components/sections/stats/SectionDropsStats";
+import SectionDropsCharts from "@/components/sections/charts/SectionDropsCharts";
 
-export default function DropsPage() {
-  const [search, setSearch] = useState("");
+export default function UsersPage() {
+  const { drops } = useDropsFetch();
 
   return (
     <AuthGuard>
-      <main className="bg-gray-100 w-full h-screen pt-20 px-6">
-        <div className="flex items-center justify-between">
+    <main className="bg-gray-100 w-full min-h-screen max-h-screen overflow-y-scroll custom-scroll pt-20 px-6">
+        <div className="flex items-center justify-between mt-3">
           <Breadcrumb routes={["Drops"]} />
-          <div className="flex-1 w-full"></div>
-          <div className="relative pb-6">
-            <input
-              type="text"
-              placeholder=" "
-              onChange={handleChange}
-              className="block rounded-lg px-2.5 pb-1.5 pt-4 w-full text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer text-emerald-700 border-emerald-500 focus:border-emerald-500"
-            />
-            <label className="absolute text-sm duration-300 transform -translate-y-4 scale-75 top-5 z-10 origin-[0] left-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 text-emerald-700 peer-focus:text-emerald-600">
-              Search
-            </label>
-          </div>
         </div>
-        <DropsList search={search}/>
+        <SectionDropsStats data={drops} />
+        <SectionDropsCharts data={drops} />
       </main>
     </AuthGuard>
   );
 
-  function handleChange(event){
+  function handleChange(event) {
     setSearch(event.target.value);
   }
 }

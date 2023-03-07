@@ -7,7 +7,7 @@ const BiUserCircle = dynamic(
 );
 
 export default function FeedbackList() {
-  const { ussdfeed } = useFeedbackFetch();
+  const { feedback } = useFeedbackFetch();
   return (
     <section>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -17,12 +17,18 @@ export default function FeedbackList() {
               Name
             </th>
             <th scope="col" className="px-6 py-3">
+              Source
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Title
+            </th>
+            <th scope="col" className="px-6 py-3">
               Comment
             </th>
           </tr>
         </thead>
         <tbody>
-          {ussdfeed.map((pickup) => (
+          {feedback.map((pickup) => (
             <tr
               key={pickup.id}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -43,6 +49,8 @@ export default function FeedbackList() {
                   </div>
                 </div>
               </th>
+              <td className="px-6 py-4 uppercase">{pickup?.source}</td>
+              <td className="px-6 py-4 ">{pickup?.title}</td>
               <td className="px-6 py-4 ">{pickup?.feedback}</td>
             </tr>
           ))}

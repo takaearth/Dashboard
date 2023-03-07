@@ -12,7 +12,7 @@ html {
 
 body {
   caret-color: transparent;
-  @apply leading-normal tracking-normal text-emerald-900 custom-scroll;
+  @apply leading-normal tracking-normal text-emerald-900;
 }
 
 /* width */

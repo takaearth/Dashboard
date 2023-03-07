@@ -18,23 +18,21 @@ import { useAuth } from "@/context/authContext";
 
 const useFeedbackFetch = () => {
   const { user: session } = useAuth();
-  const [ussdfeed, setUssdfeed] = useState([]);
-
-  const [ussdfeedPending, setUssdfeedPending] = useState(false);
-
-  const [ussdfeedError, setUssdfeedError] = useState(null);
+  const [feedback, setFeedback] = useState([]);
+  const [feedbackPending, setFeedbackPending] = useState(false);
+  const [feedbackError, setFeedbackError] = useState(null);
 
   useEffect(() => {
     try {
       if (!isEmpty(session) && session?.id?.length > 0) {
         let queryRef = query(
-          collection(db, "ussd_feedback"),
+          collection(db, "feedback"),
           //orderBy("timestamp", "desc")
         );
-        localforage.getItem("ussdfeed", function (err, value) {
+        localforage.getItem("feedback", function (err, value) {
           // if err is non-null, we got an error. otherwise, value is the value
           if (!err && value) {
-            setUssdfeed(JSON.parse(value));
+            setFeedback(JSON.parse(value));
           }
         });
 
@@ -53,28 +51,28 @@ const useFeedbackFetch = () => {
               tmp.push(d);
             });
 
-            setUssdfeed(tmp);
-            localforage.setItem("ussdfeed", JSON.stringify(tmp), function (err) {
+            setFeedback(tmp);
+            localforage.setItem("feedback", JSON.stringify(tmp), function (err) {
               // if err is non-null, we got an error
             });
-            setUssdfeedPending(false);
+            setFeedbackPending(false);
           },
           (error) => {
-            console.info("Ussdfeed Hook: getUssdfeed useEffect: ", error);
+            console.info("Feedback Hook: getFeedback useEffect: ", error);
           }
         );
       }
     } catch (error) {
-      console.log("Ussdfeed   Hook: getUssdfeed useEffect: ", error);
-      setUssdfeedError(error);
-      setUssdfeedPending(false);
+      console.log("Feedback   Hook: getFeedback useEffect: ", error);
+      setFeedbackError(error);
+      setFeedbackPending(false);
     }
   }, [session, session?.id]);
 
   return {
-    ussdfeed,
-    ussdfeedPending,
-    ussdfeedError
+    feedback,
+    feedbackPending,
+    feedbackError
   };
 };
 

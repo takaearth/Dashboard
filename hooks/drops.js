@@ -14,9 +14,7 @@ import { useAuth } from "@/context/authContext";
 const useDropsFetch = () => {
   const { user: session } = useAuth();
   const [drops, setDrops] = useState([]);
-
   const [dropsPending, setDropsPending] = useState(false);
-
   const [dropsError, setDropsError] = useState(null);
 
   useEffect(() => {
@@ -68,9 +66,7 @@ const useDropsFetch = () => {
 
   return {
     drops,
-
     dropsPending,
-
     dropsError
   };
 };

@@ -22,7 +22,7 @@ const usePickupsFetch = () => {
     try {
       if (!isEmpty(session) && session?.id?.length > 0) {
         let queryRef = query(
-          collection(db, "pickup_requests"),
+          collection(db, "pickups"),
          // orderBy("timestamp", "desc")
         );
         localforage.getItem("pickups", function (err, value) {
