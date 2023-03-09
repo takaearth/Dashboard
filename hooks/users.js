@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { query, collection, onSnapshot } from "@firebase/firestore";
+import { query, orderBy, collection, onSnapshot } from "@firebase/firestore";
 import localforage from "localforage";
 //custom
 import { db } from "@/firebase";
@@ -11,7 +11,10 @@ const useUsersFetch = () => {
 
   useEffect(() => {
     try {
-      let queryRef = query(collection(db, "users"));
+      let queryRef = query(
+        collection(db, "users"),
+        orderBy("created", "desc")
+      );
       localforage.getItem("users", function (err, value) {
         // if err is non-null, we got an error. otherwise, value is the value
         if (!err && value) {

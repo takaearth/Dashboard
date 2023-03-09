@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  doc,
-  query,
-  where,
-  limit,
-  addDoc,
-  setDoc,
-  orderBy,
-  collection,
-  onSnapshot,
-} from "@firebase/firestore";
+import { query, orderBy, collection, onSnapshot } from "@firebase/firestore";
 import localforage from "localforage";
 //custom
 import { db } from "@/firebase";
@@ -27,7 +17,7 @@ const useFeedbackFetch = () => {
       if (!isEmpty(session) && session?.id?.length > 0) {
         let queryRef = query(
           collection(db, "feedback"),
-          //orderBy("timestamp", "desc")
+          orderBy("timestamp", "desc")
         );
         localforage.getItem("feedback", function (err, value) {
           // if err is non-null, we got an error. otherwise, value is the value
@@ -52,9 +42,13 @@ const useFeedbackFetch = () => {
             });
 
             setFeedback(tmp);
-            localforage.setItem("feedback", JSON.stringify(tmp), function (err) {
-              // if err is non-null, we got an error
-            });
+            localforage.setItem(
+              "feedback",
+              JSON.stringify(tmp),
+              function (err) {
+                // if err is non-null, we got an error
+              }
+            );
             setFeedbackPending(false);
           },
           (error) => {
@@ -72,7 +66,7 @@ const useFeedbackFetch = () => {
   return {
     feedback,
     feedbackPending,
-    feedbackError
+    feedbackError,
   };
 };
 

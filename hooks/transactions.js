@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  query,
-  collection,
-  onSnapshot,
-} from "@firebase/firestore";
+import { query, orderBy, collection, onSnapshot } from "@firebase/firestore";
 import localforage from "localforage";
 //custom
 import { db } from "@/firebase";
@@ -13,9 +9,7 @@ import { useAuth } from "@/context/authContext";
 const useTransactionsFetch = () => {
   const { user: session } = useAuth();
   const [transactions, setTransactions] = useState([]);
-
   const [transactionsPending, setTransactionsPending] = useState(false);
-
   const [transactionsError, setTransactionsError] = useState(null);
 
   useEffect(() => {
@@ -23,7 +17,7 @@ const useTransactionsFetch = () => {
       if (!isEmpty(session) && session?.id?.length > 0) {
         let queryRef = query(
           collection(db, "transactions"),
-          //orderBy("timestamp", "desc")
+          orderBy("timestamp", "desc")
         );
         localforage.getItem("transactions", function (err, value) {
           // if err is non-null, we got an error. otherwise, value is the value
@@ -48,13 +42,20 @@ const useTransactionsFetch = () => {
             });
 
             setTransactions(tmp);
-            localforage.setItem("transactions", JSON.stringify(tmp), function (err) {
-              // if err is non-null, we got an error
-            });
+            localforage.setItem(
+              "transactions",
+              JSON.stringify(tmp),
+              function (err) {
+                // if err is non-null, we got an error
+              }
+            );
             setTransactionsPending(false);
           },
           (error) => {
-            console.info("Transactions Hook: getTransactions useEffect: ", error);
+            console.info(
+              "Transactions Hook: getTransactions useEffect: ",
+              error
+            );
           }
         );
       }
@@ -68,7 +69,7 @@ const useTransactionsFetch = () => {
   return {
     transactions,
     transactionsPending,
-    transactionsError
+    transactionsError,
   };
 };
 

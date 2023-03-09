@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  query,
-  collection,
-  onSnapshot,
-} from "@firebase/firestore";
+import { query, orderBy, collection, onSnapshot } from "@firebase/firestore";
 import localforage from "localforage";
 //custom
 import { db } from "@/firebase";
@@ -23,7 +19,7 @@ const usePickupsFetch = () => {
       if (!isEmpty(session) && session?.id?.length > 0) {
         let queryRef = query(
           collection(db, "pickups"),
-         // orderBy("timestamp", "desc")
+          orderBy("timestamp", "desc")
         );
         localforage.getItem("pickups", function (err, value) {
           // if err is non-null, we got an error. otherwise, value is the value
@@ -68,7 +64,7 @@ const usePickupsFetch = () => {
   return {
     pickups,
     pickupsPending,
-    pickupsError
+    pickupsError,
   };
 };
 

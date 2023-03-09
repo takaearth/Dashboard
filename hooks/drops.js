@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  query,
-  orderBy,
-  collection,
-  onSnapshot,
-} from "@firebase/firestore";
+import { query, orderBy, collection, onSnapshot } from "@firebase/firestore";
 import localforage from "localforage";
 //custom
 import { db } from "@/firebase";
@@ -67,7 +62,7 @@ const useDropsFetch = () => {
   return {
     drops,
     dropsPending,
-    dropsError
+    dropsError,
   };
 };
 
