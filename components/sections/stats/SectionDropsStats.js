@@ -40,7 +40,7 @@ export default function SectionDropsStats({ data: drops }) {
         icon={<FaUserCheck size="2em" />}
       />
       <Stats
-        title="Average Cont per Users"
+        title="Average Cont per Drop"
         count={
           totalCont > 0 ? (totalCont / drops?.length).toFixed(2) : totalCont
         }
