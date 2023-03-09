@@ -4,6 +4,7 @@ import useUsersFetch from "@/hooks/users";
 import Breadcrumb from "@/components/elements/Breadcrumb";
 import { AuthGuard } from "@/components/elements/AuthGuard";
 import SectionUsersStats from "@/components/sections/stats/SectionUsersStats";
+import SectionUsersCharts from "@/components/sections/charts/SectionUsersCharts";
 
 export default function UsersPage() {
   const { users } = useUsersFetch();
@@ -15,6 +16,7 @@ export default function UsersPage() {
           <Breadcrumb routes={["Users"]} />
         </div>
         <SectionUsersStats data={users}/>
+        <SectionUsersCharts data={users}/>
       </main>
     </AuthGuard>
   );

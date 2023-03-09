@@ -2,8 +2,11 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 //custom components
 import Stats from "@/components/cards/Stats";
+import { isThisWeek } from "date-fns";
 //dynamic imports
-const HiUsers = dynamic(async () => (await import("react-icons/hi")).HiUsers);
+const FaUserTag = dynamic(
+  async () => (await import("react-icons/fa")).FaUserTag
+);
 const FiPackage = dynamic(
   async () => (await import("react-icons/fi")).FiPackage
 );
@@ -15,38 +18,37 @@ const FaRecycle = dynamic(
 );
 
 export default function SectionDropsStats({ data: drops }) {
+  const [weeks, setWeeks] = useState(0);
   const [totalContainers, setTotalContainers] = useState(0);
 
-  useEffect(() => {
-    if (drops?.length > 0) {
-      //create new array from all the container arrays in a drop
-      const allCont = drops?.map((drop) => drop.containers);
-      //flatten the array
-      const allContFlat = [].concat.apply([], allCont);
+  //create new array from all the container arrays in a drop
+  const allCont = drops?.map((drop) => drop.containers);
+  //flatten the array
+  const allContFlat = [].concat.apply([], allCont);
+  //sum the total number of containers
+  const totalCont = allContFlat.reduce((acc, cur) => {
+    return acc + cur.containers;
+  }, 0);
 
-      //sum the total number of containers
-      const totalCont = allContFlat.reduce((acc, cur) => {
-        return acc + cur.containers;
-      }, 0);
-      setTotalContainers(totalCont);
-    }
-  }, [drops]);
+  let currentWeekDrops = getCurrentWeekDrops(drops);
 
   return (
     <section className="grid gap-6 md:grid-cols-2 2xl:grid-cols-4">
       <Stats
-        title="Active Users this Week"
-        count={drops?.length || 0}
+        title="Drops this Week"
+        count={currentWeekDrops?.length || 0}
         icon={<FaUserCheck size="2em" />}
       />
       <Stats
-        title="Active Users this month"
-        count={drops?.length || 0}
-        icon={<FaUserCheck size="2em" />}
+        title="Average Cont per Users"
+        count={
+          totalCont > 0 ? (totalCont / drops?.length).toFixed(2) : totalCont
+        }
+        icon={<FaUserTag size="2em" />}
       />
       <Stats
         title="Containers"
-        count={totalContainers}
+        count={totalCont}
         icon={<FaRecycle size="2em" />}
       />
       <Stats
@@ -56,4 +58,11 @@ export default function SectionDropsStats({ data: drops }) {
       />
     </section>
   );
+
+  function getCurrentWeekDrops(array) {
+    let filtered = array.filter((drop) => {
+      return isThisWeek(new Date(drop.timestamp));
+    });
+    return filtered;
+  }
 }

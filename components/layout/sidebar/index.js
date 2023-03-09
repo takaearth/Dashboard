@@ -14,6 +14,10 @@ const RiHomeFill = dynamic(
   async () => (await import("react-icons/ri")).RiHomeFill
 );
 const HiUsers = dynamic(async () => (await import("react-icons/hi")).HiUsers);
+const BiListUl = dynamic(async () => (await import("react-icons/bi")).BiListUl);
+const BiBarChartAlt2 = dynamic(
+  async () => (await import("react-icons/bi")).BiBarChartAlt2
+);
 const FiPackage = dynamic(
   async () => (await import("react-icons/fi")).FiPackage
 );
@@ -101,8 +105,16 @@ export default function Sidebar() {
           title="Users"
           link="/users"
           sublinks={[
-            { title: "Analytics", link: "/users" },
-            { title: "Users List", link: "/users/list" },
+            {
+              title: "Analytics",
+              link: "/users",
+              icon: <BiBarChartAlt2 size="1.5em" />,
+            },
+            {
+              title: "Users List",
+              link: "/users/list",
+              icon: <BiListUl size="1.5em" />,
+            },
           ]}
           selected={router.pathname.indexOf("/users") === 0}
           icon={<HiUsers size="1.5em" />}
@@ -113,8 +125,16 @@ export default function Sidebar() {
           link="/drops"
           title="Drop Offs"
           sublinks={[
-            { title: "Analytics", link: "/drops" },
-            { title: "Drops List", link: "/drops/list" },
+            {
+              title: "Analytics",
+              link: "/drops",
+              icon: <BiBarChartAlt2 size="1.5em" />,
+            },
+            {
+              title: "Drops List",
+              link: "/drops/list",
+              icon: <BiListUl size="1.5em" />,
+            },
           ]}
           selected={router.pathname.indexOf("/drops") === 0}
           icon={<FiPackage size="1.5em" />}

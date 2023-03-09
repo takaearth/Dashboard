@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Router from "next/router";
 import dynamic from "next/dynamic";
 //dynamic imports
 const BiRightArrow = dynamic(
@@ -7,21 +7,24 @@ const BiRightArrow = dynamic(
 
 export default function Stats({ icon, title, count, link }) {
   return (
-    <Link href={link || ""}>
-      <div className="rounded-lg bg-white py-4 px-6 shadow-lg">
-        <div className="flex gap-2 items-center justify-start">
-          {icon} <span className="font-medium">{title}</span>
-        </div>
-        <p className="font-semibold text-4xl text-right text-primary">
-          {count}
-        </p>
-        {link?.length > 0 && (
-          <div className="flex gap-2 items-center justify-end mt-4">
-            <span className="text-xs">View More</span>{" "}
-            <BiRightArrow size="0.75em" />
-          </div>
-        )}
+    <div
+      onClick={handleClick}
+      className="rounded-lg bg-white py-4 px-6 shadow-lg"
+    >
+      <div className="flex gap-2 items-center justify-start">
+        {icon} <span className="font-medium">{title}</span>
       </div>
-    </Link>
+      <p className="font-semibold text-4xl text-right text-primary">{count}</p>
+      {link?.length > 0 && (
+        <div className="flex gap-2 items-center justify-end mt-4">
+          <span className="text-xs">View More</span>{" "}
+          <BiRightArrow size="0.75em" />
+        </div>
+      )}
+    </div>
   );
+
+  function handleClick() {
+    link?.length > 0 && Router.push(link);
+  }
 }

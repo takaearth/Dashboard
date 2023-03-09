@@ -66,11 +66,11 @@ export default function UsersList({ search }) {
             <th scope="col" className="px-6 py-3">
               Name
             </th>
-            <th scope="col" className="px-6 py-3">
-              Source
-            </th>
             <th scope="col" className="px-4 py-3">
               Points
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Source
             </th>
             <th scope="col" className="px-6 py-3">
               Status

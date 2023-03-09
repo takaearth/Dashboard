@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic";
 
-export default function BarChart({title, subtitle, label, values, categories }) {
+export default function BarChart({title, subtitle, labels, values }) {
   const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
   const data = {
-    series: [{ name: label, data:  values || [] }],
+    series: [{ name: subtitle, data:  values || [] }],
     options: {
       title: {
         text: title,
@@ -45,7 +45,7 @@ export default function BarChart({title, subtitle, label, values, categories }) 
         curve: "smooth",
       },
       xaxis: {
-        categories: categories || [],
+        categories: labels || [],
       },
       yaxis: {
         opposite: true,

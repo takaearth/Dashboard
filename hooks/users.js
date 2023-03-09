@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  query,
-  collection,
-  onSnapshot,
-} from "@firebase/firestore";
+import { query, collection, onSnapshot } from "@firebase/firestore";
 import localforage from "localforage";
 //custom
 import { db } from "@/firebase";
@@ -28,7 +24,8 @@ const useUsersFetch = () => {
         (snapshot) => {
           let tmp = [];
           snapshot.forEach((doc) => {
-            let per = { id: doc.id, ...doc.data() };
+            let timestm = doc.data().created.toDate();
+            let per = { id: doc.id, ...doc.data(), created: timestm };
             tmp.push(per);
           });
 

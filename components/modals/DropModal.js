@@ -7,7 +7,7 @@ import { useData } from "@/context/dataContext";
 //hooks
 import usePersonFetch from "@/hooks/person";
 //custom
-import { censorPhoneNumber } from "@/helpers";
+import { findBrand, findProduct, censorPhoneNumber, imageMap } from "@/helpers";
 
 //dynamic imports
 const BiUserCircle = dynamic(
@@ -86,7 +86,42 @@ export default function DropModal() {
               </div>
             </div>
           </section>
-          <h3 className="text-lg font-bold text-gray-400">Containers</h3>
+          <h3 className="text-lg font-bold text-gray-400 mb-6">Containers</h3>
+          {selDrop?.containers?.length > 0 &&
+            selDrop?.containers.map((c, i) => (
+              <div className="grid grid-cols-3 border border-dashed bg-white w-full" key={i}>
+                <div className="relative h-20">
+                  <Image
+                    className="object-contain"
+                    src={imageMap[c.type]}
+                    alt={c.type}
+                    fill
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <div className="py-2 px-6">
+                    {c.op ? (
+                      <p className="font-semibold">{c?.product}</p>
+                    ) : (
+                      <p className="font-semibold">
+                        {findProduct(c?.brand, c?.product)}
+                      </p>
+                    )}
+                    {c?.ob ? (
+                      <p className="text-sm text-gray-500">{c?.brand}</p>
+                    ) : (
+                      <p className="text-sm text-gray-500">
+                        {findBrand(c?.brand)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <span className="p-4 text-center font-bold">
+                  {c?.containers}
+                </span>
+              </div>
+            ))}
         </label>
       </label>
     </div>
