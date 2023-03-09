@@ -3,9 +3,6 @@ import dynamic from "next/dynamic";
 import useUsersFetch from "@/hooks/users";
 //custom components
 import Stats from "@/components/cards/Stats";
-import useDropsFetch from "@/hooks/drops";
-import useTransactionsFetch from "@/hooks/transactions";
-import usePickupsFetch from "@/hooks/pickups";
 //dynamic imports
 const HiUsers = dynamic(async () => (await import("react-icons/hi")).HiUsers);
 const FiPackage = dynamic(
@@ -18,11 +15,7 @@ const FaTruckPickup = dynamic(
   async () => (await import("react-icons/fa")).FaTruckPickup
 );
 
-export default function SectionStats() {
-  const { users } = useUsersFetch();
-  const { drops } = useDropsFetch();
-  const { pickups } = usePickupsFetch();
-  const { transactions } = useTransactionsFetch();
+export default function SectionStats({data: {users, drops, pickups, transactions}}) {
   return (
     <section className="grid gap-6 md:grid-cols-2 2xl:grid-cols-4">
       <Stats
