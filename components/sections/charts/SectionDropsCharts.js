@@ -27,7 +27,7 @@ export default function SectionDropsCharts({ data: drops }) {
 
   return (
     <section className="mb-20">
-      <div className="grid gap-6 2xl:grid-cols-3">
+      <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         <section className="bg-white p-6 rounded-xl mt-10 relative">
           <DonutChart
             title="Waste"

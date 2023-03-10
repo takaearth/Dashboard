@@ -7,7 +7,7 @@ import DonutChart from "@/components/charts/DonutChart";
 export default function SectionHomeCharts({data: {users, drops, pickups, transactions}}) {
   return (
     <section className="mb-20">
-      <div className="grid gap-6 2xl:grid-cols-4">
+      <div className="grid gap-6 lg:grid-cols-2 2xl:grid-cols-4">
         <section className="bg-white p-6 rounded-xl mt-10 relative">
           <DonutChart
             title="Users"
@@ -16,21 +16,21 @@ export default function SectionHomeCharts({data: {users, drops, pickups, transac
             labels={["Stand", "Online"]}
           />
         </section>
-        <section className="bg-white p-6 rounded-xl mt-10 relative 2xl:col-span-2">
-          <LineChart
-            title="Interactions"
-            subtitle="Customer Interactions"
-            label="Label"
-            values={[ 0, 0, (drops?.length || 0) + (pickups?.length || 0)]}
-            categories={["Jan", "Feb", "Mar"]}
-          />
-        </section>
         <section className="bg-white p-6 rounded-xl mt-10 relative">
           <PieChart
             title="Requests"
             subtitle="User Requests"
             values={[drops?.length || 0, pickups?.length || 0]}
             labels={["Drops", "Pickups"]}
+          />
+        </section>
+        <section className="bg-white p-6 rounded-xl mt-10 relative lg:col-span-2">
+          <LineChart
+            title="Interactions"
+            subtitle="Customer Interactions"
+            label="Label"
+            values={[ 0, 0, (drops?.length || 0) + (pickups?.length || 0)]}
+            categories={["Jan", "Feb", "Mar"]}
           />
         </section>
       </div>
