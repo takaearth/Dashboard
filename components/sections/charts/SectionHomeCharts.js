@@ -30,8 +30,8 @@ export default function SectionHomeCharts({data: {users, drops, pickups, transac
             title="Interactions"
             subtitle="Customer Interactions"
             label="Label"
-            values={[0, 0, 0, 0, (drops?.length || 0) + (pickups?.length || 0)]}
-            categories={["Jan", "Feb", "Mar", "Apr", "May"]}
+            values={[ 0, 0, (drops?.length || 0) + (pickups?.length || 0)]}
+            categories={["Jan", "Feb", "Mar"]}
           />
         </section>
       </div>

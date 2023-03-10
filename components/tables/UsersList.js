@@ -45,7 +45,7 @@ export default function UsersList({ search }) {
   }, [search, users]);
 
   useEffect(() => {
-    if (filtered?.length > limit) {
+    if (filtered?.length >= limit) {
       setPin({ start: 0, end: limit });
     }else{
       setPin({ start: 0, end: filtered.length })

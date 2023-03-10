@@ -25,8 +25,8 @@ export default function SideBarDrop({
       onClick={handleClick}
       className={classNames(
         "relative w-full collapse rounded-lg hover:shadow-sm transition-colors duration-75 ease-linear",
-        selected && "bg-emerald-800",
-        !selected && "hover:bg-emerald-700"
+        selected && "bg-emerald-800 pointer-events-none",
+        !selected && "hover:bg-emerald-700 pointer-events-auto"
       )}
     >
       <input checked={selected} type="checkbox" className="peer" readOnly />
@@ -47,7 +47,7 @@ export default function SideBarDrop({
             <Link key={i} href={s.link}>
               <div
                 className={classNames(
-                  "flex gap-2 py-2 items-center mt-2 rounded-md hover:bg-emerald-700",
+                  "flex gap-2 py-2 items-center mt-2 rounded-md hover:bg-emerald-700 pointer-events-auto",
                   open ? "justify-start px-2" : "justify-center"
                 )}
               >

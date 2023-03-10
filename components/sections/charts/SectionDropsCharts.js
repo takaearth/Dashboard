@@ -55,8 +55,8 @@ export default function SectionDropsCharts({ data: drops }) {
             title="Interactions"
             subtitle="Customer Interactions"
             label="Label"
-            values={[0, 0, 0, 0, drops?.length || 0]}
-            categories={["Jan", "Feb", "Apr", "May", "Jun"]}
+            values={[ 0, 0, drops?.length || 0]}
+            categories={["Jan", "Feb", "Mar"]}
           />
         </section>
       </div>

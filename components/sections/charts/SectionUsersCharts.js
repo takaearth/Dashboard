@@ -26,8 +26,8 @@ export default function SectionUsersCharts({ data: users }) {
             title="Users"
             subtitle="Customer Aquisition"
             label="Label"
-            values={[0, 0, 0, 0, users?.length || 0]}
-            categories={["Jan", "Feb", "Mar", "Apr", "May"]}
+            values={[ 0, 0, users?.length || 0]}
+            categories={["Jan", "Feb", "Mar"]}
           />
         </section>
       </div>

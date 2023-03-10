@@ -129,7 +129,7 @@ export default function DropsList({ search }) {
           </button>
         )}
 
-        {pin.end <= drops.length && page.length > limit && (
+        {pin.end <= drops.length && page.length >= limit && (
           <button onClick={loadNext} className="gap-1 btn btn-sm btn-primary">
             <p>Next</p>
             <RiArrowRightCircleLine size="1.25em" />
