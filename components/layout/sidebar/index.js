@@ -63,7 +63,7 @@ export default function Sidebar() {
         variants={contAnim}
         initial="hide"
         animate={controls}
-        className="relative h-screen bg-gradient-to-b from-emerald-600 to-emerald-800 text-white drop-shadow-2xl flex flex-col gap-2 pt-5 px-4"
+        className="relative h-screen bg-gradient-to-b from-emerald-600 to-emerald-700 text-white drop-shadow-2xl flex flex-col gap-2 pt-5 px-4"
       >
         <div className="flex justify-end w-full">
           <button
@@ -103,7 +103,6 @@ export default function Sidebar() {
           index={2}
           open={open}
           title="Users"
-          link="/users"
           sublinks={[
             {
               title: "Analytics",
@@ -122,7 +121,6 @@ export default function Sidebar() {
         <SideBarDrop
           index={2}
           open={open}
-          link="/drops"
           title="Drop Offs"
           sublinks={[
             {

@@ -17,6 +17,7 @@ export default function UsersPage() {
         </div>
         <SectionDropsStats data={drops} />
         <SectionDropsCharts data={drops} />
+        
       </main>
     </AuthGuard>
   );

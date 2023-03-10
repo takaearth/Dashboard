@@ -18,9 +18,6 @@ const FaRecycle = dynamic(
 );
 
 export default function SectionDropsStats({ data: drops }) {
-  const [weeks, setWeeks] = useState(0);
-  const [totalContainers, setTotalContainers] = useState(0);
-
   //create new array from all the container arrays in a drop
   const allCont = drops?.map((drop) => drop.containers);
   //flatten the array

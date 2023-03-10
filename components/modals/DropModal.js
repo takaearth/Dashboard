@@ -34,7 +34,15 @@ export default function DropModal() {
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
           <h3 className="text-lg font-bold text-gray-400">Customer Drop</h3>
-          <section className="grid grid-cols-5 pl-6">
+          <section className="grid gap-4 grid-cols-5 pl-6">
+          <div className="col-span-2 flex items-center justify-start gap-4">
+              <p className="text-base">Drop ID :</p>
+            </div>
+            <div className="col-span-3 flex items-center justify-start gap-4">
+              <p className="font-medium text-lg text-primary capitalize">
+                {selDrop?.id}
+              </p>
+            </div>
             <div className="col-span-2 flex items-center justify-start gap-4">
               <p className="text-base">Droppped by :</p>
             </div>
@@ -98,7 +106,7 @@ export default function DropModal() {
                     fill
                   />
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-start">
                   <div className="py-2 px-6">
                     {c.op ? (
                       <p className="font-semibold">{c?.product}</p>

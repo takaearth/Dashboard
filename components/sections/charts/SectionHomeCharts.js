@@ -1,5 +1,4 @@
 //hooks
-
 //custom components
 import PieChart from "@/components/charts/PieChart";
 import LineChart from "@/components/charts/LineChart";
@@ -17,14 +16,6 @@ export default function SectionHomeCharts({data: {users, drops, pickups, transac
             labels={["Stand", "Online"]}
           />
         </section>
-        <section className="bg-white p-6 rounded-xl mt-10 relative">
-          <PieChart
-            title="Requests"
-            subtitle="User Requests"
-            values={[drops?.length || 0, pickups?.length || 0]}
-            labels={["Drops", "Pickups"]}
-          />
-        </section>
         <section className="bg-white p-6 rounded-xl mt-10 relative 2xl:col-span-2">
           <LineChart
             title="Interactions"
@@ -32,6 +23,14 @@ export default function SectionHomeCharts({data: {users, drops, pickups, transac
             label="Label"
             values={[ 0, 0, (drops?.length || 0) + (pickups?.length || 0)]}
             categories={["Jan", "Feb", "Mar"]}
+          />
+        </section>
+        <section className="bg-white p-6 rounded-xl mt-10 relative">
+          <PieChart
+            title="Requests"
+            subtitle="User Requests"
+            values={[drops?.length || 0, pickups?.length || 0]}
+            labels={["Drops", "Pickups"]}
           />
         </section>
       </div>

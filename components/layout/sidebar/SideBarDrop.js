@@ -22,14 +22,13 @@ export default function SideBarDrop({
       whileTap="tap"
       custom={index}
       variants={buttonAnim}
-      onClick={handleClick}
       className={classNames(
-        "relative w-full collapse rounded-lg hover:shadow-sm transition-colors duration-75 ease-linear",
-        selected && "bg-emerald-800 pointer-events-none",
-        !selected && "hover:bg-emerald-700 pointer-events-auto"
+        "relative w-full collapse  collapse-arrow rounded-lg hover:shadow-sm transition-colors duration-75 ease-linear",
+        selected && "bg-emerald-800",
+        !selected && "hover:bg-emerald-700"
       )}
     >
-      <input checked={selected} type="checkbox" className="peer" readOnly />
+      <input defaultChecked={selected} type="checkbox" className="peer" readOnly />
       <div
         className={classNames(
           "collapse-title flex gap-2 p-4 items-center text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content",
@@ -47,8 +46,9 @@ export default function SideBarDrop({
             <Link key={i} href={s.link}>
               <div
                 className={classNames(
-                  "flex gap-2 py-2 items-center mt-2 rounded-md hover:bg-emerald-700 pointer-events-auto",
-                  open ? "justify-start px-2" : "justify-center"
+                  "flex gap-2 py-2 items-center mt-2 rounded-md hover:bg-emerald-700",
+                  open ? "justify-start px-2" : "justify-center",
+                  selected ? "hover:bg-emerald-700" : "hover:bg-emerald-800"
                 )}
               >
                 {s?.icon ? s.icon : icon}{" "}
@@ -62,9 +62,6 @@ export default function SideBarDrop({
     </motion.div>
   );
 
-  function handleClick() {
-    router.push(link);
-  }
 }
 
 const spring = {
